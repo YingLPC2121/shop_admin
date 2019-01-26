@@ -1,0 +1,206 @@
+﻿
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>订单管理</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0"> 
+   
+
+<script type="text/javascript">
+	function checkAllOrder()
+	{
+		var checkList=document.getElementsByName("checkOrder");
+		for(var i=0;i<checkList.length;i++)
+		{
+			checkList[i].checked=document.getElementById("checkAll").checked;
+		}
+	} 
+
+	function delOrder()
+	{
+		var checkList=document.getElementsByName("checkOrder");
+		
+		for(var i=0;i<checkList.length;i++)
+		{
+			var isSelected=false;
+			if(checkList[i].checked==true)
+			{
+				isSelected=true;
+				break;
+			}			
+		}
+		
+		if(isSelected==true)
+		{
+			if(confirm("确定要删除选定项吗?"))
+			{
+				document.form1.action="UserAction?method=delUser";
+				document.form1.submit();
+			}
+		}
+		else
+		{
+			alert("您还没有选择任何项！");
+			return false;
+		}	
+	}
+
+</script>
+<script type="text/javascript" src="../js/jquery.js"></script>	
+<script type="text/javascript" src="../js/My97DatePicker/WdatePicker.js"></script>	
+  <link rel="stylesheet" href="../css/style2.css" type="text/css"></link>
+ </head>
+  
+<body class="p10">
+
+ <form action="OrderServlet?method=manage" method="post" name="form1">
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+ <tr>
+ <td height="30" bgcolor="d3eaef" > &nbsp;&nbsp; &nbsp;			  	
+  					订单编号: <input type="text" name="orderNum" value=''/>&nbsp; &nbsp;&nbsp; &nbsp;
+  					订单状态:
+				<select name="status">
+					<option value="">全部</option>
+					<option value="新订单"    >新订单</option>
+					<option value="已支付"   >已支付</option>
+					<option value="已发货"    >已发货</option>  
+				</select>
+
+			&nbsp;&nbsp; &nbsp;
+			<input type="submit" value="查询" />
+ </tr>
+ </table>
+ 	<div style="margin-top: 5px"></div>
+ 	
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td height="30">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody>
+									<tr>
+										<td class="title1" height="24">
+											<div class="f_right">
+												<span class="White"> 
+												
+												</span><span
+													class="STYLE1"> &nbsp;</span>
+											</div>
+											<img src="../images/tb.gif" height="14" width="14"
+												class="ico">
+											订单信息列表
+										</td>
+									</tr>
+								</tbody>
+							</table>
+								<div style="margin-top: 8px"></div>
+					</td>
+				</tr>
+				<tr>
+    <td><table class="table1" width="100%" border="0" cellpadding="0" cellspacing="1" >
+      <tr  class="tr">
+        <td width="10%"  ><div align="center">订单号</div></td>
+        <td width="15%"  ><div align="center">付款方式</div></td>
+        <td width="10%"  ><div align="center">定单金额</div></td>
+        <td width="10%"   ><div align="center">订单状态</div></td>
+        <td width="8%"   ><div align="center">邮寄方式</div></td>
+        <td width="16%"   ><div align="center">生成日期</div></td>
+        <td width="12%"   ><div align="center">发货地址</div></td>
+        <td width="8%"   ><div align="center">操作</div></td>
+        
+      </tr>
+
+      
+       <tr>
+        <td ><div align="center">201400001  </div></td>
+        <td ><div align="center">网上银行转账 </div></td>
+        <td ><div align="center">110.0 </div></td>
+        <td ><div align="center">已支付  </div></td>
+        <td ><div align="center">15.0  </div></td>
+        <td ><div align="center">2014-07-01 </div></td>
+    
+        <td ><div align="center">黑龙江省哈尔滨市 </div></td>
+        <td  style="padding-left:20px">
+        	<div align="left" >
+        		<a href="OrderView.html?id=1" >查看</a>
+        	
+            	
+            	
+            	
+            	 | <a href="OrderServlet?method=sendGoods&orderId=1" onclick="return confirm('确定要为此订单发货吗?')") > 发货</a>
+            	
+            	
+             </div>
+        </td>
+         </tr>
+     
+       <tr>
+        <td ><div align="center">201400002  </div></td>
+        <td ><div align="center">邮寄汇款 </div></td>
+        <td ><div align="center">50.5 </div></td>
+        <td ><div align="center">已发货  </div></td>
+        <td ><div align="center">10.0  </div></td>
+        <td ><div align="center">2014-07-01 </div></td>
+    
+        <td ><div align="center">某某公司 </div></td>
+        <td  style="padding-left:20px">
+        	<div align="left" >
+        		<a href="OrderView.html?id=2" >查看</a>
+
+             </div>
+        </td>
+         </tr>
+     
+    
+    </table>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="33%"><div align="left"><span class="STYLE22">&nbsp;&nbsp;&nbsp;&nbsp;共有<strong> 2</strong> 条记录，当前第<strong> 1</strong> 页，共 <strong>1</strong> 页</span></div></td>
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+         
+            <td width="49"><div align="center"><img src="../images/main_54.gif" width="40" height="15" /></div></td><!--首页 -->
+            <td width="49"><div align="center"><img src="../images/main_56.gif" width="45" height="15" /></div></td><!--前一页 -->
+           
+           
+            
+            <td width="49"><div align="center"><img src="../images/main_58.gif" width="45" height="15" /></div></td><!--后一页 -->
+            <td width="49"><div align="center"><img src="../images/main_60.gif" width="40" height="15" /></div></td><!--尾页 -->
+           
+           
+            <td width="37" class="STYLE22"><div align="center">转到</div></td>
+            <td width="22"><div align="center">
+            <select name="pageIndex" onChange=" document.form1.submit()" style="width:32px; height:18px; font-size:12px; border:solid 1px #7aaebd;">
+				
+				<option value=1 selected> 1</option>
+				
+			</select>
+         
+            </div></td>
+            <td width="22" class="STYLE22"><div align="center">页</div></td>
+         <!-- <td width="35"><a href="UserAction?method=userManage"><img src="../images/main_62.gif" width="26" height="15" /></a></td> -->   
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+    
+</form>
+
+
+
+
+</body>
+</html>
+

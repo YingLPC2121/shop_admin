@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title></title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/maintable.css" ></link>
+	<script type="text/javascript" src="../js/jquery-1.8.0.js"></script> 
+	<script type="text/javascript">
+		$(function(){	
+			$("table tr").mouseover(function(){
+				$(this).css("background","#D3EAEF");
+				$(this).siblings().css("background","white");
+			});
+		});
+	</script>
+
+	<script>
+		function subForm(pageIndex)
+		{
+		    //pageIndex 不传入,表示,是点击"转到"按钮的时候触发的
+		    if(pageIndex){
+		    	window.location.href="${pageContext.request.contextPath}/PermServlet.do?flag=listadmin&pageIndex="+pageIndex;
+		    }
+		    else{
+		        window.location.href="${pageContext.request.contextPath}/PermServlet.do?flag=listadmin&pageIndex="+document.getElementById("pageIndex").value;
+		    }	
+		}
+		
+	</script>
+  </head> 
+  <body>
+		 <div class ="div_title">
+				<div class="div_titlename"> <img src="../images/san_jiao.gif" ><span>管理人员基本信息列表</span></div>
+		 </div>
+
+		 <table class="main_table" >
+		       <tr>
+		 			<th>账号</th><th>状态</th><th>用户角色</th><th>操作</th>
+		 		</tr>
+		 		<tr>
+		 				<td>张三</td>	
+		 				<td>
+			 					已锁定
+		 				</td>	
+		 				<td>管理员</td>	
+		 				
+		 				<td>	
+		 					<a href="adminRole.html">角色分配</a> 
+		 				</td>
+		 		</tr>
+				
+
+		 		<tr>
+		 				<td>李四</td>	
+		 				<td>
+			 					未锁定
+		 				</td>	
+		 				<td>超级管理员</td>	
+		 				
+		 				<td>	
+		 					<a href="adminRole.html">角色分配</a> 
+		 				</td>
+		 		</tr>
+				
+				
+		 		<tr>
+		 				<td>王五</td>	
+		 				<td>
+			 					已锁定
+		 				</td>	
+		 				<td>管理员</td>	
+		 				
+		 				<td>	
+		 					<a href="adminRole.html">角色分配</a> 
+		 				</td>
+		 		</tr>
+				
+				
+		 		<tr>
+		 				<td>赵六</td>	
+		 				<td>
+			 					未锁定
+		 				</td>	
+		 				<td>管理员</td>	
+		 				
+		 				<td>	
+		 					<a href="adminRole.html">角色分配</a> 
+		 				</td>
+		 		</tr>
+		 </table>
+				
+		<div class="div_page" >
+			  <div class="div_page_left">    共有 <label>4</label> 条记录，当前第 <label>1</label> 页，共 <label>1</label> 页	</div>
+			  <div class="div_page_right" > 	 
+			  	
+		  			    <button onclick="subForm(1)" >首页</button>
+		  	 			<button onclick="subForm(${pageInfo.pageIndex-1})">上一页</button>	
+			  		
+		  			    <button onclick="subForm(${pageInfo.pageIndex+1})">下一页</button>
+		  	 			<button onclick="subForm(${pageInfo.pageCount})">尾页</button>	
+			  		
+	
+			  	 <button onclick="subForm()">转到</button>
+			  	 <input type="text" name="pageIndex" id="pageIndex" value="${pageInfo.pageIndex }" /> 页
+			   </div>	
+		</div>	
+  </body>
+</html>

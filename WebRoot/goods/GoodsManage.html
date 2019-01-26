@@ -1,0 +1,411 @@
+﻿
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    
+    <title>商品管理</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0"> 
+<script type="text/javascript" src="../js/jquery.js"> </script>
+ 
+    <script type="text/javascript">
+    	$(function(){
+					$("#bigCateId").change(function(){
+				
+						//alert($("#bigCateId").val());   
+						if($("#bigCateId").val()=="0")
+						{
+							$('#smallCateId').empty(); 
+							 $('#smallCateId').append("<option value='0'>小分类 </option>"); 
+							 return ;
+						}
+						
+						$.ajax({
+							url:"AjaxCategoryServlet",
+							method:"post",
+							data:{cateId:$("#bigCateId").val()},
+							dataType:"json",
+							cache:false,
+							async:true,
+							success:function(data){
+								
+								$('#smallCateId').empty(); 
+								var head="<option value='0'>小分类 </option>"
+								var optionStr="";
+								for(var i=0;i<data.length;i++){
+									optionStr+= "<option value='"+data[i].id+"'>"+data[i].cateName+"</option>";
+								}
+								
+								head+=optionStr;
+								 $('#smallCateId').append(head); 
+							}
+						});
+					}
+				);
+			});
+		</script>
+		
+
+<script type="text/javascript">
+	function checkAllGoods()
+	{
+		var checkList=document.getElementsByName("checkGoods");
+		for(var i=0;i<checkList.length;i++)
+		{
+			checkList[i].checked=document.getElementById("checkAll").checked;
+		}
+	} 
+
+	function delGoodsList()
+	{
+		var checkList=document.getElementsByName("checkGoods");
+		
+		for(var i=0;i<checkList.length;i++)
+		{
+			var isSelected=false;
+			if(checkList[i].checked==true)
+			{
+				isSelected=true;
+				break;
+			}			
+		}
+		
+		if(isSelected==true)
+		{
+			if(confirm("确定要删除选定项吗?"))
+			{
+				document.form1.action="GoodsAction?method=delGoodsList";
+				document.form1.submit();
+			}
+		}
+		else
+		{
+			alert("您还没有选择任何项！");
+			return false;
+		}
+	}
+	
+
+</script>
+  <link rel="stylesheet" href="../css/style2.css" type="text/css"></link>
+ </head>
+  
+<body class="p10">
+
+ <form action="GoodsServlet?method=manage" method="post" name="form1">
+ <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+ <tr>
+ <td height="30" bgcolor="d3eaef" > &nbsp;&nbsp; &nbsp;			  	
+  <select name="bigCateId" id="bigCateId"  style="margin-left: 15px">
+			            <option value="0">大分类 </option>
+			            
+			            	<option value='1'  >特价商品1</option>
+			            
+			            	<option value='2'  >最新商品2</option>
+			            
+			            	<option value='3'  >日常商品3</option>
+			            
+			        </select>
+			        <select name="smallCateId" id="smallCateId" >
+			            <option VALUE="0">小分类 </option>
+			        </select>&nbsp; &nbsp;商品名称:<input type="text" name="goodsName"/>&nbsp; &nbsp;<input type="submit" value="查询" /></td>
+ </tr>
+ </table>
+ 	<div style="margin-top: 5px"></div>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30">
+
+    	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody>
+									<tr>
+										<td class="title1" height="24">
+											<div class="f_right">
+												<span class="White"> <input name="checkAll"
+														id="checkAll" onclick="checkAllGoods();"
+	
+type="checkbox">
+													全选 &nbsp;&nbsp;<img src="../images/add.gif" height="10"
+														width="10"> <a
+													style="color: #fff; margin-left: 3px;"
+													href="GoodsAdd.jsp">添加</a>
+													&nbsp; <img src="../images/del.gif" height="10" width="10">
+													<input value="刪除" onclick="delGoodsList()";
+	
+style="background: none; color: #fff; border: none;"
+														type="button"> &nbsp;&nbsp; &nbsp;</span><span
+													class="STYLE1"> &nbsp;</span>
+											</div>
+											<img src="../images/tb.gif" height="14" width="14"
+												class="ico">
+											商品基本信息列表
+										</td>
+									</tr>
+								</tbody>
+							</table>
+								<div style="margin-top: 8px"></div>
+    
+    </td>
+  </tr>
+  <tr>
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+      <tr>
+        <td width="4%" height="20" bgcolor="d3eaef" class="STYLE10"><div align="center">
+         选择
+        </div></td>
+         <td width="10%" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">商品名称</span></div></td>
+        <td  height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">当前数量</span></div></td>
+        <td height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">所属分类</span></div></td>
+        <td  height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">单位</span></div></td>
+        <td  height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">单价</span></div></td>
+        <td  height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">商品描述</span></div></td>
+        <td  height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">基本操作</span></div></td>
+      </tr>
+     
+      
+       <tr >
+        <td height="20" bgcolor="#FFFFFF"><div align="center">
+          <input type="checkbox" name="checkGoods" value=42 />
+        </div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">康师傅</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">30</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">食品</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">桶</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">3.5</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">康师傅方便面就是这个味!</div></td>
+		<td height="20" bgcolor="#FFFFFF">
+			<div align="center" class="STYLE21">
+				<a
+					href="GoodsEdit.html?id=42">修改
+				</a>
+				 | <a href="GoodsServlet?method=del&id=42"  onclick="return confirm('确定删除吗?')"/>删除</a>
+			</div>
+		</td>
+	</tr>
+       
+       <tr >
+        <td height="20" bgcolor="#FFFFFF"><div align="center">
+          <input type="checkbox" name="checkGoods" value=43 />
+        </div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">可口可乐</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">30</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">食品</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">瓶</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">2.5</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">世界知名公司生产，具有活力成分!</div></td>
+		<td height="20" bgcolor="#FFFFFF">
+			<div align="center" class="STYLE21">
+				<a
+					href="GoodsEdit.html?id=43">修改
+				</a>
+				 | <a href="GoodsServlet?method=del&id=43"  onclick="return confirm('确定删除吗?')"/>删除</a>
+			</div>
+		</td>
+	</tr>
+       
+       <tr >
+        <td height="20" bgcolor="#FFFFFF"><div align="center">
+          <input type="checkbox" name="checkGoods" value=62 />
+        </div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">4</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">4</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">食品</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">4</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">4.0</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">4</div></td>
+		<td height="20" bgcolor="#FFFFFF">
+			<div align="center" class="STYLE21">
+				<a
+					href="GoodsEdit.html?id=62">修改
+				</a>
+				 | <a href="GoodsServlet?method=del&id=62"  onclick="return confirm('确定删除吗?')"/>删除</a>
+			</div>
+		</td>
+	</tr>
+       
+       <tr >
+        <td height="20" bgcolor="#FFFFFF"><div align="center">
+          <input type="checkbox" name="checkGoods" value=46 />
+        </div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">拖鞋</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">30</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">学习用品</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">双</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">10.0</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">全国热卖棉拖鞋，冬季必备!</div></td>
+		<td height="20" bgcolor="#FFFFFF">
+			<div align="center" class="STYLE21">
+				<a
+					href="GoodsEdit.html?id=46">修改
+				</a>
+				 | <a href="GoodsServlet?method=del&id=46"  onclick="return confirm('确定删除吗?')"/>删除</a>
+			</div>
+		</td>
+	</tr>
+       
+       <tr >
+        <td height="20" bgcolor="#FFFFFF"><div align="center">
+          <input type="checkbox" name="checkGoods" value=61 />
+        </div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">看看</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">11</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">学习用品</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">本</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">11.0</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">注册会计师全国统一考试真题!</div></td>
+		<td height="20" bgcolor="#FFFFFF">
+			<div align="center" class="STYLE21">
+				<a
+					href="GoodsEdit.html?id=61">修改
+				</a>
+				 | <a href="GoodsServlet?method=del&id=61"  onclick="return confirm('确定删除吗?')"/>删除</a>
+			</div>
+		</td>
+	</tr>
+       
+       <tr >
+        <td height="20" bgcolor="#FFFFFF"><div align="center">
+          <input type="checkbox" name="checkGoods" value=44 />
+        </div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">中华墨水</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">30</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">生活用品</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">瓶</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">3.0</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">适合各种钢笔的墨水,老字号值得信赖!</div></td>
+		<td height="20" bgcolor="#FFFFFF">
+			<div align="center" class="STYLE21">
+				<a
+					href="GoodsEdit.html?id=44">修改
+				</a>
+				 | <a href="GoodsServlet?method=del&id=44"  onclick="return confirm('确定删除吗?')"/>删除</a>
+			</div>
+		</td>
+	</tr>
+       
+       <tr >
+        <td height="20" bgcolor="#FFFFFF"><div align="center">
+          <input type="checkbox" name="checkGoods" value=45 />
+        </div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">文件夹</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">30</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">生活用品</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">个</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">5.0</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">各类文件的文件夹，使用方便!</div></td>
+		<td height="20" bgcolor="#FFFFFF">
+			<div align="center" class="STYLE21">
+				<a
+					href="GoodsEdit.html?id=45">修改
+				</a>
+				 | <a href="GoodsServlet?method=del&id=45"  onclick="return confirm('确定删除吗?')"/>删除</a>
+			</div>
+		</td>
+	</tr>
+       
+       <tr >
+        <td height="20" bgcolor="#FFFFFF"><div align="center">
+          <input type="checkbox" name="checkGoods" value=47 />
+        </div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">领导力是什么</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">30</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">生活用品</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">本</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">35.0</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">教你如何领导一个团队!</div></td>
+		<td height="20" bgcolor="#FFFFFF">
+			<div align="center" class="STYLE21">
+				<a
+					href="GoodsEdit.html?id=47">修改
+				</a>
+				 | <a href="GoodsServlet?method=del&id=47"  onclick="return confirm('确定删除吗?')"/>删除</a>
+			</div>
+		</td>
+	</tr>
+       
+       <tr >
+        <td height="20" bgcolor="#FFFFFF"><div align="center">
+          <input type="checkbox" name="checkGoods" value=48 />
+        </div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">货币战争</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">30</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">生活用品</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">本</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">35.0</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">世界货币战争和经济，政治的关系!</div></td>
+		<td height="20" bgcolor="#FFFFFF">
+			<div align="center" class="STYLE21">
+				<a
+					href="GoodsEdit.html">修改
+				</a>
+				 | <a href="GoodsServlet?method=del&id=48"  onclick="return confirm('确定删除吗?')"/>删除</a>
+			</div>
+		</td>
+	</tr>
+       
+       <tr >
+        <td height="20" bgcolor="#FFFFFF"><div align="center">
+          <input type="checkbox" name="checkGoods" value=49 />
+        </div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">奥巴马演说集</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="left"><span class="STYLE19">30</span></div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">生活用品</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">本</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">35.0</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="left">教你学会如何像奥巴马一样演讲!</div></td>
+		<td height="20" bgcolor="#FFFFFF">
+			<div align="center" class="STYLE21">
+				<a
+					href="GoodsEdit.html">修改
+				</a>
+				 | <a href="GoodsServlet?method=del&id=49"  onclick="return confirm('确定删除吗?')"/>删除</a>
+			</div>
+		</td>
+	</tr>
+       
+     
+
+    </table></td>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="33%"><div align="left"><span class="STYLE22">&nbsp;&nbsp;&nbsp;&nbsp;共有<strong> 19</strong> 条记录，当前第<strong> 1</strong> 页，共 <strong>2</strong> 页</span></div></td>
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+         
+            <td width="49"><div align="center"><img src="../images/main_54.gif" width="40" height="15" /></div></td><!--首页 -->
+            <td width="49"><div align="center"><img src="../images/main_56.gif" width="45" height="15" /></div></td><!--前一页 -->
+           
+           
+            
+            <td width="49"><div align="center"><a href="GoodsServlet?method=manage&pageIndex=2"><img src="../images/main_58.gif" width="45" height="15" /></a></div></td><!--后一页 -->
+            <td width="49"><div align="center"><a href="GoodsServlet?method=manage&pageIndex=2"><img src="../images/main_60.gif" width="40" height="15" /></a></div></td><!--尾页 -->
+             
+           
+            <td width="37" class="STYLE22"><div align="center">转到</div></td>
+            <td width="22"><div align="center">
+            <select name="pageIndex" onChange=" document.form1.submit()" style="width:32px; height:18px; font-size:12px; border:solid 1px #7aaebd;">
+				
+				<option value=1 selected> 1</option>
+				
+				<option value=2 > 2</option>
+				
+			</select>
+         
+            </div></td>
+            <td width="22" class="STYLE22"><div align="center">页</div></td>
+         <!-- <td width="35"><a href="UserAction?method=userManage"><img src="../images/main_62.gif" width="26" height="15" /></a></td> -->   
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>
+

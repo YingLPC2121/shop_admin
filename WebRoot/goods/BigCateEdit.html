@@ -1,0 +1,110 @@
+﻿
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>分类信息维护</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+
+	<script type="text/javascript">
+	function validateInput()
+	{
+		var result=true;
+
+		document.getElementById("lblCateName").innerHTML="*";
+		document.getElementById("lblMsg").innerHTML="";
+			
+		
+		if(form1.cateName.value=="")
+		{
+			document.getElementById("lblCateName").innerHTML="用户名不能为空!";
+			result=false;		
+		}
+			
+		if(result==true)
+		{
+			result=confirm("确定提交吗?");
+		}
+		
+		return result;
+			
+	}
+	
+	//重置(清除页面信息)
+	function clearInfo()
+	{
+		document.getElementById("lblMsg").innerHTML="";
+		document.getElementById("lblCateName").innerHTML="*";
+		document.form1.cateName.value="";
+
+	}
+	</script>
+
+  <link rel="stylesheet" href="../css/style2.css" type="text/css"></link></head>
+  
+  <body class="p10">
+  
+  
+  <form  name="form1" action="/shop-admin/GoodsCateServlet?method=editCate"  method="post" >
+  
+  <input type="hidden" name="id" value='5'>
+ <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+	 <tbody>
+	 	<tr>
+	 		<td class="title2" > <img src="../images/tb.gif" height="14" width="14" class="ico">分类信息维护</td>
+	 	</tr>
+	 </tbody>
+ </table>
+
+	 <div style="margin-top: 8px"></div>
+
+			<table  border="0" cellpadding="0" cellspacing="1"
+				width="100%" class="table2">
+				<tbody>
+					<tr>
+						<td align="right" width="100"> 
+							所属一级分类
+						</td>
+						<td>
+						<label >特价商品</label>
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							分类名称
+						</td>
+						<td>
+								<input style="margin-left: 15px" type="text" name="cateName"
+							value='学习用品' />
+						<label id="lblCateName">
+							*
+						</label>
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<td colspan="2">
+							<input style="margin-left: 50px" class="bt" value="提交"
+								onclick="return validateInput()" type="submit">
+							
+						<input type="button" value="重置" onclick="clearInfo();" class="bt" />
+						<label id="lblMsg"></label>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</form>
+  </body>
+</html>
+
+
+
+
+  
+
+  
+

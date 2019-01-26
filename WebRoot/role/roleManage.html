@@ -1,0 +1,141 @@
+﻿
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    
+    <title>角色管理</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0"> 
+   
+
+  <link rel="stylesheet" href="../css/style2.css" type="text/css"></link>
+ </head>
+  
+<body class="p10">
+
+ <form action="UserAction?method=userManage" method="post" name="form1">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td height="30">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%">
+								<tbody>
+									<tr>
+										<td class="title1" height="24">
+											<div class="f_right">
+												<span class="White"> 
+												<img src="../images/add.gif" height="10"
+														width="10"> 
+													&nbsp; 
+													
+	
+ &nbsp;&nbsp; &nbsp;</span><span
+													class="STYLE1"> &nbsp;</span>
+											</div>
+											<img src="../images/tb.gif" height="14" width="14"
+												class="ico">
+											角色信息列表
+										</td>
+									</tr>
+								</tbody>
+							</table>
+								<div style="margin-top: 8px"></div>
+					</td>
+				</tr>
+				<tr>
+    <td>
+    <table class="table1" width="100%" border="0" cellpadding="0" cellspacing="1" >
+      <tr  class="tr">
+
+         <td width="10%"  ><div align="center">用户ID</div></td>
+        <td width="10%"  ><div align="center">用户账号</div></td>
+        <td width="15%"  ><div align="center">用名姓名</div></td>
+        <td width="8%"   ><div align="center">操作 </div></td>
+      </tr>
+     
+      
+	<tr>
+			<td>
+				<input type="checkbox" name="ck_id" value="1" /> 
+			</td>
+			<td>超级管理员</td>	
+		
+			<td>超级管理员</td>	
+			<td>
+			<a href="javascript:void(0)">修改</a> | 
+			<a href="" onclick="return confirm('确定要删除该角色吗')" >删除</a> |  
+			<a href="RoleEdit.html">角色权限分配</a>
+			</td>
+	</tr>
+       
+      <tr>
+			<td>
+				<input type="checkbox" name="ck_id" value="1" /> 
+			</td>
+			<td>超级管理员</td>	
+		
+			<td>超级管理员</td>	
+			<td>
+			<a href="javascript:void(0)">修改</a> | 
+			<a href="" onclick="return confirm('确定要删除该角色吗')" >删除</a> |  
+			<a href="RoleEdit.html">角色权限分配</a>
+			</td>
+	</tr>
+	
+	<tr>
+			<td>
+				<input type="checkbox" name="ck_id" value="1" /> 
+			</td>
+			<td>超级管理员</td>	
+		
+			<td>超级管理员</td>	
+			<td>
+			<a href="javascript:void(0)">修改</a> | 
+			<a href="" onclick="return confirm('确定要删除该角色吗')" >删除</a> |  
+			<a href="RoleEdit.html">角色权限分配</a>
+			</td>
+	</tr>
+       
+    
+    </table>
+  </tr>
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="33%"><div align="left"><span class="STYLE22">&nbsp;&nbsp;&nbsp;&nbsp;共有<strong> 3</strong> 条记录，当前第<strong> 1</strong> 页，共 <strong>1</strong> 页</span></div></td>
+        <td width="67%"><table width="312" border="0" align="right" cellpadding="0" cellspacing="0">
+          <tr>
+         
+            <td width="49"><div align="center"><img src="../images/main_54.gif" width="40" height="15" /></div></td><!--首页 -->
+            <td width="49"><div align="center"><img src="../images/main_56.gif" width="45" height="15" /></div></td><!--前一页 -->
+           
+           
+            
+            <td width="49"><div align="center"><img src="../images/main_58.gif" width="45" height="15" /></div></td><!--后一页 -->
+            <td width="49"><div align="center"><img src="../images/main_60.gif" width="40" height="15" /></div></td><!--尾页 -->
+           
+           
+            <td width="37" class="STYLE22"><div align="center">转到</div></td>
+            <td width="22"><div align="center">
+            <select name="pageIndex" onChange=" document.form1.submit()" style="width:32px; height:18px; font-size:12px; border:solid 1px #7aaebd;">
+				
+				<option value=1 selected> 1</option>
+				
+			</select>
+         
+            </div></td>
+            <td width="22" class="STYLE22"><div align="center">页</div></td>
+ 
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+    
+</form>
+</body>
+</html>
+

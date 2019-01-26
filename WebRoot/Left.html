@@ -1,0 +1,172 @@
+
+	
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+<title></title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/chili-1.7.pack.js"></script>
+<script type="text/javascript" src="js/jquery.easing.js"></script>
+<script type="text/javascript" src="js/jquery.dimensions.js"></script>
+<script type="text/javascript" src="js/jquery.accordion.js"></script>
+<script language="javascript">
+	jQuery().ready(function(){
+		jQuery('#navigation').accordion({
+			header: '.head',
+			navigation1: true, 
+			event: 'click',
+			fillSpace: true,
+			animated: 'bounceslide'
+		});
+	});
+</script>
+<style type="text/css">
+body {
+	margin:0px;
+	padding:0px;
+	font-size: 12px;
+}
+#navigation {
+	margin:0px;
+	padding:0px;
+	width:147px;
+}
+#navigation a.head {
+	cursor:pointer;
+	background:url(images/main_34.gif) no-repeat scroll;
+	display:block;
+	font-weight:bold;
+	margin:0px;
+	padding:5px 0 5px;
+	text-align:center;
+	font-size:12px;
+	text-decoration:none;
+}
+#navigation ul {
+	border-width:0px;
+	margin:0px;
+	padding:0px;
+	text-indent:0px;
+
+}
+#navigation li {
+	list-style:none; display:inline;
+text-align:center;
+}
+#navigation li li a {
+	display:block;
+	font-size:12px;
+	text-decoration: none;
+	text-align:center;
+	padding:3px;
+}
+#navigation li a img {
+	
+	border: none;
+}
+
+#navigation li li a:hover {
+	background:url(images/tab_bg.gif) repeat-x;
+		border:solid 1px #adb9c2;
+}
+
+#navigation li li a:hover {
+	background:url(images/tab_bg.gif) repeat-x;
+		border:solid 1px #adb9c2;
+}
+</style>
+</head>
+<body>
+
+
+<div  style="height:100%;" >
+
+  <ul id="navigation">
+       
+       			<li>
+					<a class="head">菜单管理</a>
+					<ul>
+						<li>
+								<a href="menu/BigMenuAdd.jsp" target="rightFrame"><img src="images/main_48.gif" /><label>添加一级菜单</label></a>
+								<a href="menu/SmallMenuAdd.jsp" target="rightFrame"><img src="images/main_46.gif" /><label>添加二级菜单</label></a>
+								<a href="queryAllMenuList.do?flag=queryAllMenuList" target="rightFrame"><img src="images/main_50.gif" /><label>管理菜单</label></a>
+						</li>
+					</ul>
+				</li>
+       			
+				<li>
+					<a class="head">权限管理</a>
+					<ul>
+						<li>
+								<a href="queryAdminRole.do?flag=queryAdminRole&pageIndex=1" target="rightFrame"><img src="images/main_50.gif" /><label>用户角色管理</label></a>
+								<a href="queryAdminRole.do?flag=queryAllRole&pageIndex=1" target="rightFrame"><img src="images/main_52.gif" /><label>角色管理</label></a>
+								<a href="role/roleAdd.jsp" target="rightFrame"><img src="images/main_48.gif" /><label>创建角色</label></a>
+						</li>
+					</ul>
+				</li>
+		
+				<li>
+					<a class="head">系统管理</a>
+					<ul>
+						<li>
+							
+							<a href="admin/AdminAdd.jsp" target="rightFrame"><img src="images/main_52.gif" /><label>用户添加</label></a>
+						
+							<a href="queryAllAdmin.do?flag=queryAllAdmin&pageIndex=1" target="rightFrame"><img src="images/main_40.gif" /><label>用户维护</label></a>
+						
+						</li>
+					</ul>
+				</li>
+		
+				<li>
+					<a class="head">分类管理</a>
+					<ul>
+						<li>
+								<a href="goods/BigCateAdd.jsp" target="rightFrame"><img src="images/main_48.gif" /><label>添加一级分类</label></a>
+								<a href="goods/SmallCateAdd.jsp" target="rightFrame"><img src="images/main_46.gif" /><label>添加二级分类</label></a>
+								<a href="queryAllCateList.do?flag=queryAllCateList" target="rightFrame"><img src="images/main_50.gif" /><label>管理分类</label></a>
+						</li>
+					</ul>
+				</li>
+		
+				<li>
+					<a class="head">商品管理</a>
+					<ul>
+						<li>
+								<a href="goods/GoodsAdd.jsp" target="rightFrame"><img src="images/main_52.gif" /><label> 商品添加</label></a>
+								<a href="queryAllGoods.do?flag=queryAllGoods&pageIndex=1" target="rightFrame"><img src="images/main_40.gif" /><label>商品维护</label></a>
+						</li>
+					</ul>
+				</li>
+		
+				<li>
+					<a class="head">会员管理</a>
+					<ul>
+						<li>	
+								<a href="user/UserManage.html" target="rightFrame"><img src="images/main_46.gif" /><label>会员维护</label></a>
+						</li>
+					</ul>
+				</li>
+		
+				<li>
+					<a class="head">订单管理</a>
+					<ul>
+						<li>
+								<a href="order/OrderManage.html" target="rightFrame"><img src="images/main_48.gif" /><label>订单维护</label></a>
+						</li>
+					</ul>
+				</li>
+		
+
+    <li> <a class="head">网站前台</a>
+      <ul>
+        <li><a href="http://localhost:8080/shop" target="_blank">前台</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+</body>
+</html>
